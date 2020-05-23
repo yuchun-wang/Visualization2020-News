@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>News</title>
     <link rel="stylesheet" href="style.css">
+    <script src="//d3js.org/d3.v5.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="chart"></div>
+    <div class="btn-group-vertical" data-toggle="buttons" id = "options">
+        <label class="btn btn-danger active" id="all">
+            <text>全國</text>
+            <input type="checkbox" autocomplete="off" >
+            <span class="glyphicon glyphicon-ok"></span>
+        </label>
+        <label class="btn btn-primary active" id="north">
+            <text>北部</text>
+            <input type="checkbox" autocomplete="off">
+            <span class="glyphicon glyphicon-ok"></span>
+        </label>
+        <label class="btn btn-warning active" id="central">
+            <text>中部</text>
+            <input type="checkbox" autocomplete="off">
+            <span class="glyphicon glyphicon-ok"></span>
+        </label>
+        <label class="btn btn-info active" id="south">
+            <text>南部</text>
+            <input type="checkbox" autocomplete="off">
+            <span class="glyphicon glyphicon-ok"></span>
+        </label>
+        <label class="btn btn-success active" id="west">
+            <text>東部</text>
+            <input type="checkbox" autocomplete="off">
+            <span class="glyphicon glyphicon-ok"></span>
+        </label>
+    </div>
     <script src="script.js"></script>
-
-
 </body>
 </html>

@@ -1,11 +1,15 @@
 const margin = {
     top: 60,
-    right: 50,
-    bottom: 50,
+    right: 100,
+    bottom: 150,
     left: 100
   },
-  width = 750,
-  height = 400
+  width = 1000,
+  height = 500
+
+var color = ["black", "blue", "green", "red", "yellow"]
+var cities = []
+var div = d3.select("#chart").append("div").attr("class", "tooltip").style("opacity", 0);
 
 const svg = d3
   .select("#chart")
@@ -16,23 +20,25 @@ const svg = d3
   .attr("transform", `translate(${margin.left}, ${margin.right})`);
 
 Promise.all([
-  d3.csv("rent_data.csv"),
-]).then(([rentData]) => {
-  d3.map(rentData, function(d) {
-    return delete d.column;
+  d3.csv("news_data.csv"),
+]).then(([newsData]) => {
+
+  const cities = newsData.map((item) => item.Cities);
+  // console.log(cities);
+  d3.map(newsData, function(d) {
+    return delete d.Cities;
   });
-  // let max = 0;
-  let max = 1036304;
-  let max_rent = Math.max.apply(null, Object.values(rentData[12]));
 
-  // rentData.forEach((data) => {
-  //   if (max < Math.max.apply(null, Object.values(data))) {
-  //     max = Math.max.apply(null, Object.values(data));
-  //   }
-  // });
+  let max = 0;
 
-  const years = rentData.columns.slice(1);
+  newsData.forEach((data) => {
+    if (max < Math.max.apply(null, Object.values(data))) {
+      max = Math.max.apply(null, Object.values(data));
+    }
+  });
 
+  const years = newsData.columns.slice(1);
+  
   // x-Axis
   const x = d3
     .scaleBand()
@@ -45,57 +51,22 @@ Promise.all([
     .attr("class", "xaxis")
     .call(xAxis)
     .style("font-family", "Courier New")
-    .attr("transform", `translate(0, ${height})`);
+    .attr("transform", `translate(0, ${height})`)
+    .selectAll("text")
+    .attr("y", 0)
+    .attr("x", 35)
+    .attr("transform", "rotate(60)");
 
   // y-Axis
-  const y = d3.scaleLinear().domain([0, max]).range([height, 0]);
+
+  const y = d3.scaleLinear().domain([4, 17]).range([height, 0]);
   const yAxis = d3.axisLeft(y)
-    .ticks(20); // number of ticks
+    .ticks(20);
   svg
     .append("g")
     .attr("class", "yaxis")
     .style("font-family", "Courier New")
     .call(yAxis);
-
-  const y2 = d3
-    .scaleLinear()
-    .domain([90, max_rent])
-    .range([height, 0]);
-  const y2Axis = d3.axisRight(y2).ticks(5); // number of ticks
-  svg
-    .append("g")
-    .attr("class", "yaxis")
-    .style("font-family", "Courier New")
-    .call(y2Axis)
-    .attr("transform", `translate(${width}, 0)`);
-
-  // const bar_income
-  svg
-    .append('g')
-    .selectAll('rect')
-    .data(d3.map(rentData[0]).entries())
-    .enter()
-
-    .append('rect')
-    .attr('x', (d, i) => x(d.key) + x.bandwidth() / 2 - 15)
-    .attr('y', (d, i) => y(d.value))
-    .attr('height', (d, i) => height - y(d.value))
-    .attr('width', 30)
-    .style('fill', 'red');
-
-  // const bar_expense
-  svg
-    .append('g')
-    .selectAll('rect')
-    .data(d3.map(rentData[6]).entries())
-    .enter()
-
-    .append('rect')
-    .attr('x', (d, i) => x(d.key) + x.bandwidth() / 2 - 15)
-    .attr('y', (d, i) => y(d.value))
-    .attr('height', (d, i) => height - y(d.value))
-    .attr('width', 30)
-    .style('fill', 'blue');
 
   //line chart
   let lineValue = d3.line()
@@ -103,62 +74,141 @@ Promise.all([
       return x(d.key) + x.bandwidth() / 2;
     })
     .y(function(d) {
-      return y2(d.value);
+      return y(d.value);
     });
 
-  let cline = svg.append("path")
-    .datum(d3.map(rentData[12]).entries())
-    .attr("class", 'casepath')
-    .attr("fill", "none")
-    .attr("stroke", "#FFC300")
-    .attr("stroke-width", '1.5')
-    .attr("d", lineValue(d3.map(rentData[12]).entries()))
+  function cline(d, color, city, classs) {
+    svg.append("path")
+      .datum(d)
+      .attr("class", classs)
+      .attr("fill", "none")
+      .attr("stroke", color)
+      .attr("stroke-width", '1.5')
+      .attr("d", lineValue(d))
+      .style("opacity", 0.3)
+      .on('mouseover', function() {
+        d3.selectAll("." + classs).transition()
+          .style("opacity", 1);
+      })
+      .on('mouseout', function() {
+        d3.selectAll("." + classs).transition()
+          .style("opacity", 0.3);
+      });
 
-  svg.selectAll("dot")
-    .data(d3.map(rentData[12]).entries())
-    .enter()
-    .append("circle")
-    .attr("class", 'casedot')
-    .attr('fill', '#FFC300')
-    .attr("r", 5)
-    .attr("cx", d => x(d.key) + x.bandwidth() / 2)
-    .attr("cy", d => y2(d.value));
+    svg
+      .selectAll("dot")
+      .data(d)
+      .enter()
+      .append("circle")
+      .attr("class", classs)
+      .attr('fill', color)
+      .attr("r", 5)
+      .attr("cx", d => x(d.key) + x.bandwidth() / 2)
+      .attr("cy", d => y(d.value))
+      .style("opacity", 0.3)
+      .on('mouseover', function(d) {
+        d3.selectAll("." + classs).transition()
+          .style("opacity", 1);
 
-  console.log(d3.map(rentData[0]).entries());
+        div.transition()
+          .duration(200)
+          .style("opacity", 0.9);
 
+        div.html("[ " + city + " ]" + "<br/>" + d.key + "：" + d.value)
+          .style("left", (d3.event.pageX + 10) + "px")
+          .style("top", (d3.event.pageY - 10) + "px");
+      })
+      .on('mouseout', function() {
+        d3.selectAll("." + classs).transition()
+          .style("opacity", 0.3);
+
+          div.transition()
+            .duration(200)
+            .style("opacity", 0);
+      });
+
+    svg
+      .append("text")
+      .datum(d[43])
+      .attr("class", classs)
+      .attr("x", width + 50)
+      .attr("y", d => y(d.value))
+      .attr("font-size", "12px")
+      .style("text-anchor", "middle")
+      .style("font-family", "Courier New")
+      .text(city)
+      .style("opacity", 0.3)
+      .on('mouseover', function() {
+        d3.selectAll("." + classs).transition()
+          .style("opacity", 1);
+      })
+      .on('mouseout', function() {
+        d3.selectAll("." + classs).transition()
+          .style("opacity", 0.3);
+      });
+  }
+
+  for (i = 0; i <= 19; i++) {
+    if (i <= 0) {
+      cline(d3.map(newsData[i]).entries(), color[0], cities[i], "c" + i);
+    }else if (i <= 7) {
+      cline(d3.map(newsData[i]).entries(), color[1], cities[i], "c" + i);
+    }else if (i <= 12) {
+      cline(d3.map(newsData[i]).entries(), color[2], cities[i], "c" + i);
+    }else if (i <= 17) {
+      cline(d3.map(newsData[i]).entries(), color[3], cities[i], "c" + i);
+    }else {
+      cline(d3.map(newsData[i]).entries(), color[4], cities[i], "c" + i);
+    }
+  }
+
+  d3.selectAll("label")
+    .on("click", function(d){
+      active_status = !this.className.includes("active");
+      area = this.id;
+      if(active_status) {
+        showLine()
+      } else {
+        hideLine()
+      }
+    })
+
+  function showLine() {
+    
+  }
+
+  function hideLine() {
+    svg.selectAll(".casepath")
+      .remove()
+
+  }  
+  //
+  // console.log(d3.map(rentData[0]).entries());
   // axis label
   svg
     .append("text")
     .attr("transform", "rotate(-90)")
     .attr("x", -(height / 2) - 50)
-    .attr("y", -margin.left + 10)
+    .attr("y", -margin.left + 30)
     .attr("dy", "1em")
     .style("font-family", "Courier New")
-    .text("金額(單位：新台幣)");
+    .text("倍數");
+
   svg
     .append("text")
-    .attr("transform", "translate(" + width / 2 + " ," + (height + 50) + ")")
+    .attr("transform", "translate(" + width / 2 + " ," + (height + 90) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "Courier New")
-    .text("年份");
+    .text("年/季");
 
   svg
     .append("text")
-    .attr("transform", "rotate(90)")
-    .attr("x", (height / 2) - 10)
-    .attr("y", -width - 50)
-    .attr("dy", "1em")
-    .style("font-family", "Courier New")
-    .text("指數");
-
-  svg
-    .append("text")
-    .attr("x", width / 10)
+    .attr("x", width / 3)
     .attr("y", -20)
     .attr("class", "seCountry")
     .attr("font-size", "20px")
     .attr("font-family", "Courier New")
     .style("font-weight", "bold")
-    .text("民國98至107年台灣年均每戶可支配所得、支出與租屋指數相關圖");
+    .text("民國98至108年台灣每季房價所得比變化圖");
 })
 
