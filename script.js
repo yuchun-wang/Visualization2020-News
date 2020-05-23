@@ -9,6 +9,7 @@ const margin = {
 
 var color = ["black", "blue", "green", "red", "yellow"]
 var cities = []
+var div = d3.select("#chart").append("div").attr("class", "tooltip").style("opacity", 0);
 
 const svg = d3
   .select("#chart")
@@ -50,7 +51,7 @@ Promise.all([
     .attr("transform", `translate(0, ${height})`)
     .selectAll("text")
     .attr("y", 0)
-    .attr("x", 25)
+    .attr("x", 35)
     .attr("transform", "rotate(60)");
 
   // y-Axis
@@ -100,13 +101,25 @@ Promise.all([
       .attr("cx", d => x(d.key) + x.bandwidth() / 2)
       .attr("cy", d => y(d.value))
       .style("opacity", 0.3)
-      .on('mouseover', function() {
+      .on('mouseover', function(d) {
         d3.selectAll("." + classs).transition()
           .style("opacity", 1);
+
+        div.transition()
+          .duration(200)
+          .style("opacity", 0.9);
+
+        div.html("[ " + city + " ]" + "<br/>" + d.key + "：" + d.value)
+          .style("left", (d3.event.pageX + 10) + "px")
+          .style("top", (d3.event.pageY - 10) + "px");
       })
       .on('mouseout', function() {
         d3.selectAll("." + classs).transition()
           .style("opacity", 0.3);
+
+          div.transition()
+            .duration(200)
+            .style("opacity", 0);
       });
 
     svg
@@ -115,7 +128,7 @@ Promise.all([
       .attr("class", classs)
       .attr("x", width + 50)
       .attr("y", d => y(d.value))
-      .attr("font-size", "10px")
+      .attr("font-size", "12px")
       .style("text-anchor", "middle")
       .style("font-family", "Courier New")
       .text(city)
@@ -131,15 +144,15 @@ Promise.all([
   }
 
   for (i = 0; i <= 19; i++) {
-    if (i < 1) {
+    if (i <= 0) {
       cline(d3.map(newsData[i]).entries(), color[0], cities[i], "c" + i);
-    } else if (i < 8) {
+    }else if (i <= 7) {
       cline(d3.map(newsData[i]).entries(), color[1], cities[i], "c" + i);
-    } else if (i < 13) {
+    }else if (i <= 12) {
       cline(d3.map(newsData[i]).entries(), color[2], cities[i], "c" + i);
-    } else if (i < 18) {
+    }else if (i <= 17) {
       cline(d3.map(newsData[i]).entries(), color[3], cities[i], "c" + i);
-    } else {
+    }else {
       cline(d3.map(newsData[i]).entries(), color[4], cities[i], "c" + i);
     }
   }
@@ -149,17 +162,17 @@ Promise.all([
     .append("text")
     .attr("transform", "rotate(-90)")
     .attr("x", -(height / 2) - 50)
-    .attr("y", -margin.left + 40)
+    .attr("y", -margin.left + 30)
     .attr("dy", "1em")
     .style("font-family", "Courier New")
     .text("倍數");
 
   svg
     .append("text")
-    .attr("transform", "translate(" + width / 2 + " ," + (height + 70) + ")")
+    .attr("transform", "translate(" + width / 2 + " ," + (height + 90) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "Courier New")
-    .text("季");
+    .text("年/季");
 
   svg
     .append("text")
