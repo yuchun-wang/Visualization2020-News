@@ -26,15 +26,18 @@ const svg = d3
 Promise.all([
   d3.csv("news_data.csv"),
 ]).then(([newsData]) => {
+
+  const cities = newsData.map((item) => item.Cities);
+  // console.log(cities);
   d3.map(newsData, function(d) {
-    return delete d.Season;
+    delete d.Citits
+    return delete d.Area;
   });
 
   console.log(newsData)
 
   let max = 0;
   // let max = 1036304;
-  // let max_rent = Math.max.apply(null, Object.values(newsData[1]));
 
   newsData.forEach((data) => {
     if (max < Math.max.apply(null, Object.values(data))) {
@@ -43,7 +46,7 @@ Promise.all([
   });
 
   const years = newsData.columns.slice(1);
-
+  
   // x-Axis
   const x = d3
     .scaleBand()
@@ -59,7 +62,7 @@ Promise.all([
     .attr("transform", `translate(0, ${height})`);
 
   // y-Axis
-  const y = d3.scaleLinear().domain([0, 20]).range([height, 0]);
+  const y = d3.scaleLinear().domain([0, max]).range([height, 0]);
   const yAxis = d3.axisLeft(y)
     .ticks(20); // number of ticks
   svg
@@ -127,22 +130,42 @@ Promise.all([
       .attr("stroke-width", '1.5')
       .attr("d", lineValue(d))
 
-    svg.selectAll("dot")
+    svg
+      .selectAll("dot")
       .data(d)
       .enter()
       .append("circle")
-      .attr("class", 'casedot')
-      .attr('fill', '#FFC300')
+      .attr("class", "casepath")
+      .attr("fill", "#FFC300")
       .attr("r", 5)
-      .attr("cx", d => x(d.key) + x.bandwidth() / 2)
-      .attr("cy", d => y(d.value));
+      .attr("cx", (d) => x(d.key) + x.bandwidth() / 2)
+      .attr("cy", (d) => y(d.value));
   }
 
   cline(d3.map(newsData[0]).entries());
 
   console.log(d3.map(newsData[0]).entries());
 
+  d3.selectAll("label")
+    .on("click", function(d){
+      active_status = !this.className.includes("active");
+      area = this.id;
+      if(active_status) {
+        showLine()
+      } else {
+        hideLine()
+      }
+    })
 
+  function showLine() {
+    
+  }
+
+  function hideLine() {
+    svg.selectAll(".casepath")
+      .remove()
+
+  }  
   //
   // console.log(d3.map(rentData[0]).entries());
 
