@@ -1,7 +1,7 @@
 const margin = {
     top: 60,
     right: 100,
-    bottom: 150,
+    bottom: 300,
     left: 100
   },
   width = 1000,
@@ -10,6 +10,13 @@ const margin = {
 var color = ["#C9302C", "#3071A9", "#EC971F", "#31B0D5", "#449D44"]
 var cities = []
 var div = d3.select("#chart").append("div").attr("class", "tooltip").style("opacity", 0);
+var event1 = d3.select("#chart").append("div").attr("class", "event");
+// var event2 = d3.select("#chart").append("div").attr("class", "event");
+// var event3 = d3.select("#chart").append("div").attr("class", "event");
+// var event4 = d3.select("#chart").append("div").attr("class", "event");
+// var event5 = d3.select("#chart").append("div").attr("class", "event");
+// var event6 = d3.select("#chart").append("div").attr("class", "event");
+// var event7 = d3.select("#chart").append("div").attr("class", "event");
 
 const svg = d3
   .select("#chart")
@@ -26,7 +33,7 @@ Promise.all([
   const cities = newsData.map((item) => item.Cities);
   const area = newsData.map((item) => item.Area);
 
-  d3.map(newsData, function (d) {
+  d3.map(newsData, function(d) {
     delete d.Area
     return delete d.Cities;
   });
@@ -40,10 +47,8 @@ Promise.all([
   });
 
   const years = newsData.columns.slice(2);
-  
 
   // y-Axis
-
   const y = d3.scaleLinear().domain([4, 17]).range([height, 0]);
   const yAxis = d3.axisLeft(y)
     .ticks(20);
@@ -53,14 +58,16 @@ Promise.all([
     .style("font-family", "Courier")
     .style("font-weight", "bold")
     .call(yAxis);
+
   // grid lines
-    svg.append("g")
-        .attr("class", "grid")
-        .style("stroke-dasharray", ("3,3"))
-        .call(d3.axisLeft(y).ticks(20)
-            .tickSize(-width)
-            .tickFormat("")
-        )
+  svg.append("g")
+    .attr("class", "grid")
+    .style("stroke-dasharray", ("3,3"))
+    .call(d3.axisLeft(y).ticks(20)
+      .tickSize(-width)
+      .tickFormat("")
+    )
+
   // x-Axis
   const x = d3
     .scaleBand()
@@ -78,7 +85,8 @@ Promise.all([
     .selectAll("text")
     .attr("y", 0)
     .attr("x", 35)
-    .attr("transform", "rotate(60)");
+    .attr("transform", "rotate(60)")
+
   //line chart
   let lineValue = d3.line()
     .x(function(d) {
@@ -98,16 +106,17 @@ Promise.all([
       .attr("stroke-width", "1.5")
       .attr("d", lineValue(d))
       .style("opacity", 0.3)
-      .on("mouseover", function () {
+      .on("mouseover", function() {
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 1);
       })
-      .on("mouseout", function () {
+      .on("mouseout", function() {
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 0.3);
       });
+
     const toolLine = svg.append("line");
     svg
       .selectAll("dot")
@@ -120,7 +129,9 @@ Promise.all([
       .attr("cx", (d) => x(d.key) + x.bandwidth() / 2)
       .attr("cy", (d) => y(d.value))
       .style("opacity", 0.3)
-      .on("mouseover", function (d) {
+      .attr("event", showevent)
+      .on("mouseover", function(d) {
+        console.log(x(d.key));
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 1);
@@ -141,7 +152,7 @@ Promise.all([
           .attr("y1", y(d.value))
           .attr("y2", y(d.value));
       })
-      .on("mouseout", function () {
+      .on("mouseout", function() {
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 0.3);
@@ -161,12 +172,12 @@ Promise.all([
       .style("font-family", "Courier New")
       .text(city)
       .style("opacity", 0.3)
-      .on("mouseover", function () {
+      .on("mouseover", function() {
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 1);
       })
-      .on("mouseout", function () {
+      .on("mouseout", function() {
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 0.3);
@@ -176,27 +187,27 @@ Promise.all([
   for (i = 0; i <= 19; i++) {
     if (i <= 0) {
       cline(d3.map(newsData[i]).entries(), color[0], cities[i], "c" + i, area[i]);
-    }else if (i <= 7) {
+    } else if (i <= 7) {
       cline(d3.map(newsData[i]).entries(), color[1], cities[i], "c" + i, area[i]);
-      svg.selectAll(".c"+i)
+      svg.selectAll(".c" + i)
         .style("display", "none")
-    }else if (i <= 12) {
+    } else if (i <= 12) {
       cline(d3.map(newsData[i]).entries(), color[2], cities[i], "c" + i, area[i]);
       svg.selectAll(".c" + i).style("display", "none");
-    }else if (i <= 17) {
+    } else if (i <= 17) {
       cline(d3.map(newsData[i]).entries(), color[3], cities[i], "c" + i, area[i]);
       svg.selectAll(".c" + i).style("display", "none");
-    }else {
+    } else {
       cline(d3.map(newsData[i]).entries(), color[4], cities[i], "c" + i, area[i]);
       svg.selectAll(".c" + i).style("display", "none");
     }
   }
 
   d3.selectAll("label")
-    .on("click", function(d){
+    .on("click", function(d) {
       active_status = !this.className.includes("active");
       let checked_area = this.id;
-      if(active_status) {
+      if (active_status) {
         showLine(checked_area)
       } else {
         hideLine(checked_area)
@@ -204,19 +215,117 @@ Promise.all([
     })
 
   function showLine(checked_area) {
-    svg.selectAll("."+checked_area).style("display", "flex")
+    svg.selectAll("." + checked_area).style("display", "flex")
   }
 
   function hideLine(checked_area) {
     svg.selectAll("." + checked_area).style("display", "none");
-  }  
-  //
-  // console.log(d3.map(rentData[0]).entries());
+  }
+
+  function showevent(d) {
+    event1
+      .html("<p style='border-color:red;' width='50px'>內政部實施｜不動產交易實價登錄制度<p>")
+      .style("left", 318.1818181818182 + margin.left + "px")
+      .style("top", height + 180 + "px");
+    // event2
+    //   .html("房屋稅法修正調高非自用住宅稅率")
+    //   .style("left", 477.27272727272725 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
+    // event3
+    //   .html("巢運提出五大訴求")
+    //   .style("left", 522.7272727272727 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
+    // event4
+    //   .html("張淑晶事件")
+    //   .style("left", 545.4545454545455 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
+    // event5
+    //   .html("房地合一實價課稅開始實施")
+    //   .style("left", 636.3636363636364 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
+    // event6
+    //   .html("蔡英文上台房市三箭｜杜絕房市炒作、健全租屋體系、建二十萬戶社會住宅")
+    //   .style("left", 659.0909090909091 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
+    // event7
+    //   .html("開始實施｜租賃住宅市場發展及管理條例")
+    //   .style("left", 840.9090909090909 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
+
+
+  }
+
+  // svg
+  //   .append("text")
+  //   .attr("class","event")
+  //   .attr("x", 318.1818181818182)
+  //   .attr("y", height + 80)
+  //   .attr("dy", "1em")
+  //   .style("background", "yellow")
+  //   .style("font-family", "Courier")
+  //   .text("101年Q3:內政部實施「不動產交易實價登錄」制度");
+  // svg
+  //   .append("text")
+  //   .attr("class", "event")
+  //   .attr("x", 477.27272727272725)
+  //   .attr("y", height + 100)
+  //   .attr("dy", "1em")
+  //   .style("font-family", "Courier")
+  //   .text("103年Q2:《房屋稅法》修正調高非自用住宅稅率");
+  // svg
+  //   .append("text")
+  //   .attr("class", "event")
+  //   .attr("x", 522.7272727272727)
+  //   .attr("y", height + 120)
+  //   .attr("dy", "1em")
+  //   .style("font-family", "Courier")
+  //   .text("103年Q4:巢運提出五大訴求");
+  // svg
+  //   .append("text")
+  //   .attr("class", "event")
+  //   .attr("x", 545.4545454545455)
+  //   .attr("y", height + 140)
+  //   .attr("dy", "1em")
+  //   .style("font-family", "Courier")
+  //   .text("104年Q1:張淑晶事件");
+  // svg
+  //   .append("text")
+  //   .attr("class", "event")
+  //   .attr("x", 636.3636363636364)
+  //   .attr("y", height + 160)
+  //   .attr("dy", "1em")
+  //   .style("font-family", "Courier")
+  //   .text("105年Q1:房地合一實價課稅開始實施");
+  // svg
+  //   .append("text")
+  //   .attr("class", "event")
+  //   .attr("x", 659.0909090909091)
+  //   .attr("y", height + 180)
+  //   .attr("dy", "1em")
+  //   .style("font-family", "Courier")
+  //   .text("105年Q2:蔡英文上台");
+  //   svg
+  //     .append("text")
+  //     .attr("class", "event")
+  //     .attr("x", 659.0909090909091)
+  //     .attr("y", height + 200)
+  //     .attr("dy", "1em")
+  //     .style("font-family", "Courier")
+  //     .text("房市三箭：杜絕房市炒作、健全租屋體系、建二十萬戶社會住宅");
+  // svg
+  //   .append("text")
+  //   .attr("class", "event")
+  //   .attr("x", 840.9090909090909)
+  //   .attr("y", height + 220)
+  //   .attr("dy", "1em")
+  //   .style("font-family", "Courier")
+  //   .text("107年Q2:《租賃住宅市場發展及管理條例》開始實施");
+
   // axis label
   svg
     .append("text")
     .attr("transform", "rotate(-90)")
-    .attr("x", -(height / 2) - 50)
+    .attr("x", -(height / 2) - 30)
     .attr("y", -margin.left + 30)
     .attr("dy", "1em")
     .style("font-family", "Courier")
@@ -224,7 +333,7 @@ Promise.all([
 
   svg
     .append("text")
-    .attr("transform", "translate(" + width / 2 + " ," + (height + 90) + ")")
+    .attr("transform", "translate(" + (width + 60) + " ," + (height + 30) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "Courier")
     .text("年/季");
@@ -236,7 +345,6 @@ Promise.all([
     .attr("class", "seCountry")
     .attr("font-size", "20px")
     .attr("font-family", "Courier")
-    // .style("font-weight", "bold")
     .text("民國98至108年台灣每季房價所得比變化圖");
 
   // const tooltipLine = svg.append("line");
@@ -266,4 +374,3 @@ Promise.all([
   //   if (tooltipLine) tooltipLine.style("opacity", 0);
   // }
 })
-
