@@ -1,13 +1,13 @@
 const margin = {
     top: 60,
     right: 100,
-    bottom: 300,
+    bottom: 400,
     left: 100
   },
   width = 1000,
   height = 500
 
-var color = ["#C9302C", "#3071A9", "#EC971F", "#31B0D5", "#449D44"]
+var color = ["#E76F51", "#F4A261", "#E9C46A", "#2A9D8F", "#264653"]
 var cities = []
 var div = d3.select("#chart").append("div").attr("class", "tooltip").style("opacity", 0);
 
@@ -49,6 +49,7 @@ Promise.all([
   svg
     .append("g")
     .attr("class", "yaxis")
+    .attr("color","#5F7470")
     .style("font-family", "Courier")
     .style("font-weight", "bold")
     .call(yAxis);
@@ -73,13 +74,15 @@ Promise.all([
     .append("g")
     .attr("class", "xaxis")
     .call(xAxis)
-    .style("font-family", "Courier")
-    .style("font-weight", "bold")
+    .attr("color","#5F7470")
     .attr("transform", `translate(0, ${height})`)
     .selectAll("text")
     .attr("y", 0)
     .attr("x", 35)
     .attr("transform", "rotate(60)")
+    .attr("font-family", "Courier")
+    .attr("font-weight", "bold")
+    .attr("fill","#5F7470")
 
   //line chart
   let lineValue = d3.line()
@@ -123,7 +126,7 @@ Promise.all([
       .attr("cx", (d) => x(d.key) + x.bandwidth() / 2)
       .attr("cy", (d) => y(d.value))
       .style("opacity", 0.3)
-      .attr("event", showevent)
+      // .attr("event", showevent)
       .on("mouseover", function(d) {
         console.log(x(d.key), 'd');
         d3.selectAll("." + classs)
@@ -163,7 +166,9 @@ Promise.all([
       .attr("y", (d) => y(d.value))
       .attr("font-size", "12px")
       .style("text-anchor", "middle")
-      .style("font-family", "Courier New")
+      .attr("font-family", "Courier")
+      .attr("font-weight", "bold")
+      .attr("fill","#5F7470")
       .text(city)
       .style("opacity", 0.3)
       .on("mouseover", function() {
@@ -183,8 +188,7 @@ Promise.all([
       cline(d3.map(newsData[i]).entries(), color[0], cities[i], "c" + i, area[i]);
     } else if (i <= 7) {
       cline(d3.map(newsData[i]).entries(), color[1], cities[i], "c" + i, area[i]);
-      svg.selectAll(".c" + i)
-        .style("display", "none")
+      svg.selectAll(".c" + i).style("display", "none")
     } else if (i <= 12) {
       cline(d3.map(newsData[i]).entries(), color[2], cities[i], "c" + i, area[i]);
       svg.selectAll(".c" + i).style("display", "none");
@@ -207,7 +211,7 @@ Promise.all([
         hideLine(checked_area)
       }
     })
-  
+
 
   function showLine(checked_area) {
     svg.selectAll("." + checked_area).style("display", "flex")
@@ -216,7 +220,7 @@ Promise.all([
   function hideLine(checked_area) {
     svg.selectAll("." + checked_area).style("display", "none");
   }
-  
+
   var event1 = d3.select("#chart").append("div").attr("class", "event");
   var event2 = d3.select("#chart").append("div").attr("class", "event");
   var event3 = d3.select("#chart").append("div").attr("class", "event");
@@ -235,11 +239,11 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 180 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 1);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 329.54545454545456)
     .attr("x2", 329.54545454545456)
     .attr("stroke-width", "3")
@@ -256,11 +260,11 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 240 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 0.7);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 488.6363636363636)
     .attr("x2", 488.6363636363636)
     .attr("stroke-width", "3")
@@ -277,11 +281,11 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 180 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 0.7);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 534.0909090909091)
     .attr("x2", 534.0909090909091)
     .attr("stroke-width", "3")
@@ -291,7 +295,7 @@ Promise.all([
   event4
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>張淑晶事件</span>" +
-        "<br>" 
+        "<br>"
         // +
         // "<span style='display:inline-block;padding-top:8px'>提出五大訴求</span>"
     )
@@ -299,11 +303,11 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 300 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 0.7);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 556.8181818181819)
     .attr("x2", 556.8181818181819)
     .attr("stroke-width", "3")
@@ -321,11 +325,11 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 330 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 0.7);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 647.7272727272727)
     .attr("x2", 647.7272727272727)
     .attr("stroke-width", "3")
@@ -334,7 +338,7 @@ Promise.all([
     .attr("y2", height + 230);
   event6
     .html(
-      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>蔡英文上台|房市三箭</span>" +
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>蔡英文上台:房市三箭</span>" +
         "<br>" +
         "<span style='display:inline-block;padding-top:8px'>杜絕房市炒作</span>" +
         "<br>" +
@@ -346,11 +350,11 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 180 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 0.7);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 670.4545454545455)
     .attr("x2", 670.4545454545455)
     .attr("stroke-width", "3")
@@ -367,18 +371,18 @@ Promise.all([
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 330 + "px")
-    .style("background", "#FFC300")
-    .style("opacity", 0.7);
+    .style("background", "#B8BDB5");
+    // .style("opacity", 0.7);
   svg
     .append("line")
-    .attr("stroke", "#FFC300")
+    .attr("stroke", "#B8BDB5")
     .attr("x1", 852.2727272727273)
     .attr("x2", 852.2727272727273)
     .attr("stroke-width", "3")
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 230);
-  
+
   function showevent(d) {
     // event1
     //   .html("<span style='background:red;' width='50px'>內政部實施｜不動產交易實價登錄制度<span>")
@@ -486,6 +490,8 @@ Promise.all([
     .attr("y", -margin.left + 30)
     .attr("dy", "1em")
     .style("font-family", "Courier")
+    .attr("font-weight", "bold")
+    .attr("fill","#5F7470")
     .text("倍數");
 
   svg
@@ -493,6 +499,8 @@ Promise.all([
     .attr("transform", "translate(" + (width + 60) + " ," + (height + 30) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "Courier")
+    .attr("font-weight", "bold")
+    .attr("fill","#5F7470")
     .text("年/季");
 
   svg
@@ -502,7 +510,28 @@ Promise.all([
     .attr("class", "seCountry")
     .attr("font-size", "20px")
     .attr("font-family", "Courier")
+    .attr("font-weight", "bold")
+    .attr("fill","#5F7470")
     .text("民國98至108年台灣每季房價所得比變化圖");
+
+    svg
+      .append("text")
+      .attr("x", margin.left-100)
+      .attr("y", height+250)
+      .style("text-anchor", "left")
+      .style("font-family", "Courier")
+      .attr("font-weight", "bold")
+      .attr("fill","#5F7470")
+      .text("資料來源｜內政部不動產資訊平台");
+      svg
+        .append("text")
+        .attr("x", margin.left-100)
+        .attr("y", height+270)
+        .style("text-anchor", "left")
+        .style("font-family", "Courier")
+        .attr("font-weight", "bold")
+        .attr("fill","#5F7470")
+        .text("圖表製作｜温雅筑 王毓淳 丁乃達 蘇晉威");
 
   // const tooltipLine = svg.append("line");
   // const tipBox = svg
