@@ -19,3 +19,13 @@
   border-radius: 8px;
   pointer-events: none;
 }
+.grid line {
+    stroke: lightgrey;
+    shape-rendering: crispEdges
+}
+
+.grid path {
+    display : none;
+    stroke-width: 0;
+  }
+
