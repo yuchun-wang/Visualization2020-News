@@ -1,31 +1,44 @@
-.btn span.glyphicon {    			
-	opacity: 0;				
+.btn span.glyphicon {
+  opacity: 0;
 }
-.btn.active span.glyphicon {				
-	opacity: 1;				
+
+.btn.active span.glyphicon {
+  opacity: 1;
 }
+
 .tooltip {
   position: absolute;
-  font-size : 15px;
-  font-family : times;
+  font-size: 15px;
+  font-family: times;
   font-weight: bold;
-  text-align : left;
-  color : #453246;
+  text-align: left;
+  /* color: #453246; */
   background: #B0A99F;
-  width: 125px;
-  height: 40px;
+  width: 145px;
+  height: 60px;
   padding: 10px;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
 }
+
+/* .event {
+  font-size: 15px;
+  font-family: times;
+  font-weight: bold;
+  text-align: center;
+  background-color:  #B0A99F;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+} */
+
 .grid line {
-    stroke: lightgrey;
-    shape-rendering: crispEdges
+  stroke: lightgrey;
+  shape-rendering: crispEdges
 }
 
 .grid path {
-    display : none;
-    stroke-width: 0;
-  }
-
+  display: none;
+  stroke-width: 0;
+}
