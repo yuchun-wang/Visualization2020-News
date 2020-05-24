@@ -22,16 +22,15 @@
   pointer-events: none;
 }
 
-/* .event {
+.event {
   font-size: 15px;
   font-family: times;
   font-weight: bold;
   text-align: center;
-  background-color:  #B0A99F;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 4px;
   pointer-events: none;
-} */
+}
 
 .grid line {
   stroke: lightgrey;

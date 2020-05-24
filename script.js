@@ -10,13 +10,7 @@ const margin = {
 var color = ["#C9302C", "#3071A9", "#EC971F", "#31B0D5", "#449D44"]
 var cities = []
 var div = d3.select("#chart").append("div").attr("class", "tooltip").style("opacity", 0);
-var event1 = d3.select("#chart").append("div").attr("class", "event");
-// var event2 = d3.select("#chart").append("div").attr("class", "event");
-// var event3 = d3.select("#chart").append("div").attr("class", "event");
-// var event4 = d3.select("#chart").append("div").attr("class", "event");
-// var event5 = d3.select("#chart").append("div").attr("class", "event");
-// var event6 = d3.select("#chart").append("div").attr("class", "event");
-// var event7 = d3.select("#chart").append("div").attr("class", "event");
+
 
 const svg = d3
   .select("#chart")
@@ -131,7 +125,7 @@ Promise.all([
       .style("opacity", 0.3)
       .attr("event", showevent)
       .on("mouseover", function(d) {
-        console.log(x(d.key));
+        console.log(x(d.key), 'd');
         d3.selectAll("." + classs)
           .transition()
           .style("opacity", 1);
@@ -213,6 +207,7 @@ Promise.all([
         hideLine(checked_area)
       }
     })
+  
 
   function showLine(checked_area) {
     svg.selectAll("." + checked_area).style("display", "flex")
@@ -221,12 +216,174 @@ Promise.all([
   function hideLine(checked_area) {
     svg.selectAll("." + checked_area).style("display", "none");
   }
+  
+  var event1 = d3.select("#chart").append("div").attr("class", "event");
+  var event2 = d3.select("#chart").append("div").attr("class", "event");
+  var event3 = d3.select("#chart").append("div").attr("class", "event");
+  var event4 = d3.select("#chart").append("div").attr("class", "event");
+  var event5 = d3.select("#chart").append("div").attr("class", "event");
+  var event6 = d3.select("#chart").append("div").attr("class", "event");
+  var event7 = d3.select("#chart").append("div").attr("class", "event");
 
+  event1
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>內政部實施</span>" +
+        "<br>" +
+        "<span style='display:inline-block;padding-top:8px'>不動產交易實價登錄制度</span>"
+    )
+    .style("left", 318.1818181818182 - 70 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 180 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 329.54545454545456)
+    .attr("x2", 329.54545454545456)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 90);
+  event2
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>《房屋稅法》修正</span>" +
+        "<br>" +
+        "<span style='display:inline-block;padding-top:8px'>調高非自用住宅稅率</span>"
+    )
+    .style("left", 477.27272727272725 - 55 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 240 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 488.6363636363636)
+    .attr("x2", 488.6363636363636)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 140);
+  event3
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>巢運</span>" +
+        "<br>"
+      + "<span style='display:inline-block;padding-top:8px'>提出五大訴求</span>"
+    )
+    .style("left", 534.0909090909091 -40 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 180 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 534.0909090909091)
+    .attr("x2", 534.0909090909091)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 80);
+  event4
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>張淑晶事件</span>" +
+        "<br>" 
+        // +
+        // "<span style='display:inline-block;padding-top:8px'>提出五大訴求</span>"
+    )
+    .style("left", 556.8181818181819 - 40 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 300 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 556.8181818181819)
+    .attr("x2", 556.8181818181819)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 200);
+  event5
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>房地合一實價課稅開始實施</span>" +
+        "<br>"
+      // +
+      // "<span style='display:inline-block;padding-top:8px'>提出五大訴求</span>"
+    )
+    .style("left", 647.7272727272727 - 90 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 330 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 647.7272727272727)
+    .attr("x2", 647.7272727272727)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 230);
+  event6
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>蔡英文上台|房市三箭</span>" +
+        "<br>" +
+        "<span style='display:inline-block;padding-top:8px'>杜絕房市炒作</span>" +
+        "<br>" +
+        "<span style='display:inline-block;padding-top:8px'>健全租屋體系</span>" +
+        "<br>" +
+        "<span style='display:inline-block;padding-top:8px'>&nbsp;&nbsp;&nbsp;建二十萬戶社會住宅&nbsp;&nbsp;&nbsp;</span>"
+    )
+    .style("left", 670.4545454545455 - 80 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 180 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 670.4545454545455)
+    .attr("x2", 670.4545454545455)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 80);
+  event7
+    .html(
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>《租賃住宅市場發展及管理條例》</span>" +
+        "<br>" +
+        "<span style='display:inline-block;padding-top:8px'>開始實施</span>"
+    )
+    .style("left", 852.2727272727273 - 110 + margin.left + "px")
+    .style("position", "absolute")
+    .style("box-shadow", "0px 1px 3px gray")
+    .style("top", height + 330 + "px")
+    .style("background", "#FFC300")
+    .style("opacity", 0.7);
+  svg
+    .append("line")
+    .attr("stroke", "#FFC300")
+    .attr("x1", 852.2727272727273)
+    .attr("x2", 852.2727272727273)
+    .attr("stroke-width", "3")
+    .style("opacity", 0.7)
+    .attr("y1", height)
+    .attr("y2", height + 230);
+  
   function showevent(d) {
-    event1
-      .html("<p style='border-color:red;' width='50px'>內政部實施｜不動產交易實價登錄制度<p>")
-      .style("left", 318.1818181818182 + margin.left + "px")
-      .style("top", height + 180 + "px");
+    // event1
+    //   .html("<span style='background:red;' width='50px'>內政部實施｜不動產交易實價登錄制度<span>")
+    //   .style("left", 318.1818181818182 + margin.left + "px")
+    //   .style("top", height + 180 + "px");
     // event2
     //   .html("房屋稅法修正調高非自用住宅稅率")
     //   .style("left", 477.27272727272725 + margin.left + "px")
