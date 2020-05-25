@@ -701,8 +701,8 @@ Promise.all([
 
   svg
     .append("text")
-    .attr("x", width / 3)
-    .attr("y", -20)
+    .attr("x", width / 4)
+    .attr("y", -40)
     .attr("class", "seCountry")
     .attr("font-size", "20px")
     .attr("font-family", "Noto Sans TCs")
