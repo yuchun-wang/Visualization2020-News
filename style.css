@@ -9,38 +9,48 @@
 .btn-group-vertical{
   position: absolute;
   top:100px;
-  left:1200px;
+  left:920px;
 }
 
 .btn-danger{
   background-color: #E76F51 !important;
   border-color: #E76F51 !important;
+  font-family: times;
+  font-weight: bold;
 }
 
 .btn-primary{
   background-color: #F4A261 !important;
   border-color: #F4A261 !important;
+  font-family: times;
+  font-weight: bold;
 }
 
 .btn-warning{
   background-color: #E9C46A !important;
   border-color: #E9C46A !important;
+  font-family: times;
+  font-weight: bold;
 }
 
 .btn-info{
   background-color: #2A9D8F !important;
   border-color: #2A9D8F !important;
+  font-family: times;
+  font-weight: bold;
 }
 
 .btn-success{
   background-color: #264653 !important;
   border-color: #264653 !important;
+  font-family: times;
+  font-weight: bold;
 }
 
 .tooltip {
   position: absolute;
   font-size: 15px;
-  font-family: Courier;
+  font-family: times;
   font-weight: bold;
   text-align: center;
   color: #E0E2DB;
@@ -55,7 +65,7 @@
 
 .event {
   font-size: 12px;
-  font-family: Courier;
+  font-family: times;
   font-weight: bold;
   color: #5F7470;
   text-align: center;
