@@ -15,42 +15,42 @@
 .btn-danger{
   background-color: #FA5457 !important;
   border-color: #FA5457 !important;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
 }
 
 .btn-primary{
   background-color: #FA8925 !important;
   border-color: #FA8925 !important;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
 }
 
 .btn-warning{
   background-color: #01B4BC !important;
   border-color: #01B4BC !important;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
 }
 
 .btn-info{
   background-color: #5FA55A !important;
   border-color: #5FA55A !important;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
 }
 
 .btn-success{
   background-color: #F6D51F !important;
   border-color: #F6D51F !important;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
 }
 
 .tooltip {
   position: absolute;
   font-size: 12px;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
   color: #5F7470;
   text-align: center;
@@ -62,7 +62,7 @@
 
 .event {
   font-size: 12px;
-  font-family: times;
+  font-family: Noto Sans TC;
   font-weight: bold;
   color: #5F7470;
   text-align: center;
