@@ -1,7 +1,7 @@
 const margin = {
-    top: 60,
+    top: 50,
     right: 100,
-    bottom: 400,
+    bottom: 80,
     left: 30
   },
   width = 800,
@@ -49,7 +49,7 @@ Promise.all([
     .append("g")
     .attr("class", "yaxis")
     .attr("color", "#5F7470")
-    .style("font-family", "times")
+    .style("font-family", "Noto Sans TC")
     .style("font-weight", "bold")
     .call(yAxis);
 
@@ -79,7 +79,7 @@ Promise.all([
     .attr("y", 0)
     .attr("x", 35)
     .attr("transform", "rotate(60)")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("opacity", 0)
     .attr("fill", "#5F7470")
@@ -168,7 +168,7 @@ Promise.all([
     .attr("x", 12.5)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("9 8  年");
@@ -178,7 +178,7 @@ Promise.all([
     .attr("x", 82.5)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("9 9  年");
@@ -188,7 +188,7 @@ Promise.all([
     .attr("x", 150)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 0  年");
@@ -197,7 +197,7 @@ Promise.all([
     .attr("x", 222.5)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 1  年");
@@ -206,7 +206,7 @@ Promise.all([
     .attr("x", 296)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 2  年");
@@ -215,7 +215,7 @@ Promise.all([
     .attr("x", 368)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 3  年");
@@ -224,7 +224,7 @@ Promise.all([
     .attr("x", 441)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 4  年");
@@ -233,7 +233,7 @@ Promise.all([
     .attr("x", 514)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 5  年");
@@ -242,7 +242,7 @@ Promise.all([
     .attr("x", 587)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 6  年");
@@ -251,7 +251,7 @@ Promise.all([
     .attr("x", 660)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 7  年");
@@ -260,7 +260,7 @@ Promise.all([
     .attr("x", 732)
     .attr("y", height + 20)
     .attr("class", "year")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("1 0 8  年");
@@ -625,7 +625,7 @@ Promise.all([
       .attr("y", (d) => y(d.value))
       .attr("font-size", "12px")
       .style("text-anchor", "middle")
-      .attr("font-family", "times")
+      .attr("font-family", "Noto Sans TC")
       .attr("font-weight", "bold")
       .attr("fill", "#5F7470")
       .text(city)
@@ -685,7 +685,7 @@ Promise.all([
     .attr("x", -margin.left + 5)
     .attr("y", -margin.left)
     .attr("dy", "1em")
-    .style("font-family", "times")
+    .style("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("倍數");
@@ -694,7 +694,7 @@ Promise.all([
     .append("text")
     .attr("transform", "translate(" + (width + 30) + " ," + (height + 10) + ")")
     .style("text-anchor", "middle")
-    .style("font-family", "times")
+    .style("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
     .text("年/季");
@@ -705,17 +705,17 @@ Promise.all([
     .attr("y", -20)
     .attr("class", "seCountry")
     .attr("font-size", "20px")
-    .attr("font-family", "times")
+    .attr("font-family", "Noto Sans TCs")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
-    .text("民國98至108年台灣每季房價所得比變化圖");
+    .text("民國 98 至 108 年台灣每季房價所得比變化圖");
 
   svg
     .append("text")
     .attr("x", width - margin.right)
     .attr("y", -margin.top + 30)
     .style("text-anchor", "left")
-    .style("font-family", "times")
+    .style("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("font-size", "10px")
     .attr("fill", "#5F7470")
@@ -726,7 +726,7 @@ Promise.all([
     .attr("x", width - margin.right)
     .attr("y", -margin.top + 45)
     .style("text-anchor", "left")
-    .style("font-family", "times")
+    .style("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("font-size", "10px")
     .attr("fill", "#5F7470")
