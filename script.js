@@ -4,7 +4,7 @@ const margin = {
     bottom: 400,
     left: 100
   },
-  width = 1000,
+  width = 800,
   height = 500
 
 var color = ["#E76F51", "#F4A261", "#E9C46A", "#2A9D8F", "#264653"]
@@ -43,14 +43,14 @@ Promise.all([
   const years = newsData.columns.slice(2);
 
   // y-Axis
-  const y = d3.scaleLinear().domain([4, 17]).range([height, 0]);
+  const y = d3.scaleLinear().domain([0, 20]).range([height, 0]);
   const yAxis = d3.axisLeft(y)
     .ticks(20);
   svg
     .append("g")
     .attr("class", "yaxis")
     .attr("color","#5F7470")
-    .style("font-family", "Courier")
+    .style("font-family", "times")
     .style("font-weight", "bold")
     .call(yAxis);
 
@@ -80,8 +80,9 @@ Promise.all([
     .attr("y", 0)
     .attr("x", 35)
     .attr("transform", "rotate(60)")
-    .attr("font-family", "Courier")
+    .attr("font-family", "times")
     .attr("font-weight", "bold")
+    // .attr("opacity", 0)
     .attr("fill","#5F7470")
 
   //line chart
@@ -126,7 +127,6 @@ Promise.all([
       .attr("cx", (d) => x(d.key) + x.bandwidth() / 2)
       .attr("cy", (d) => y(d.value))
       .style("opacity", 0.3)
-      // .attr("event", showevent)
       .on("mouseover", function(d) {
         console.log(x(d.key), 'd');
         d3.selectAll("." + classs)
@@ -166,7 +166,7 @@ Promise.all([
       .attr("y", (d) => y(d.value))
       .attr("font-size", "12px")
       .style("text-anchor", "middle")
-      .attr("font-family", "Courier")
+      .attr("font-family", "times")
       .attr("font-weight", "bold")
       .attr("fill","#5F7470")
       .text(city)
@@ -240,7 +240,6 @@ Promise.all([
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 180 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 1);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -250,6 +249,7 @@ Promise.all([
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 90);
+
   event2
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>《房屋稅法》修正</span>" +
@@ -261,7 +261,6 @@ Promise.all([
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 240 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 0.7);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -271,6 +270,7 @@ Promise.all([
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 140);
+
   event3
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>巢運</span>" +
@@ -282,7 +282,6 @@ Promise.all([
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 180 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 0.7);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -292,19 +291,17 @@ Promise.all([
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 80);
+
   event4
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>張淑晶事件</span>" +
         "<br>"
-        // +
-        // "<span style='display:inline-block;padding-top:8px'>提出五大訴求</span>"
-    )
+      )
     .style("left", 556.8181818181819 - 40 + margin.left + "px")
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 300 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 0.7);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -314,19 +311,17 @@ Promise.all([
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 200);
+
   event5
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>房地合一實價課稅開始實施</span>" +
         "<br>"
-      // +
-      // "<span style='display:inline-block;padding-top:8px'>提出五大訴求</span>"
-    )
+      )
     .style("left", 647.7272727272727 - 90 + margin.left + "px")
     .style("position", "absolute")
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 330 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 0.7);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -336,6 +331,7 @@ Promise.all([
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 230);
+
   event6
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>蔡英文上台:房市三箭</span>" +
@@ -351,7 +347,6 @@ Promise.all([
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 180 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 0.7);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -361,6 +356,7 @@ Promise.all([
     .style("opacity", 0.7)
     .attr("y1", height)
     .attr("y2", height + 80);
+
   event7
     .html(
       "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>《租賃住宅市場發展及管理條例》</span>" +
@@ -372,7 +368,6 @@ Promise.all([
     .style("box-shadow", "0px 1px 3px gray")
     .style("top", height + 330 + "px")
     .style("background", "#B8BDB5");
-    // .style("opacity", 0.7);
   svg
     .append("line")
     .attr("stroke", "#B8BDB5")
@@ -383,122 +378,23 @@ Promise.all([
     .attr("y1", height)
     .attr("y2", height + 230);
 
-  function showevent(d) {
-    // event1
-    //   .html("<span style='background:red;' width='50px'>內政部實施｜不動產交易實價登錄制度<span>")
-    //   .style("left", 318.1818181818182 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-    // event2
-    //   .html("房屋稅法修正調高非自用住宅稅率")
-    //   .style("left", 477.27272727272725 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-    // event3
-    //   .html("巢運提出五大訴求")
-    //   .style("left", 522.7272727272727 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-    // event4
-    //   .html("張淑晶事件")
-    //   .style("left", 545.4545454545455 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-    // event5
-    //   .html("房地合一實價課稅開始實施")
-    //   .style("left", 636.3636363636364 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-    // event6
-    //   .html("蔡英文上台房市三箭｜杜絕房市炒作、健全租屋體系、建二十萬戶社會住宅")
-    //   .style("left", 659.0909090909091 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-    // event7
-    //   .html("開始實施｜租賃住宅市場發展及管理條例")
-    //   .style("left", 840.9090909090909 + margin.left + "px")
-    //   .style("top", height + 180 + "px");
-
-
-  }
-
-  // svg
-  //   .append("text")
-  //   .attr("class","event")
-  //   .attr("x", 318.1818181818182)
-  //   .attr("y", height + 80)
-  //   .attr("dy", "1em")
-  //   .style("background", "yellow")
-  //   .style("font-family", "Courier")
-  //   .text("101年Q3:內政部實施「不動產交易實價登錄」制度");
-  // svg
-  //   .append("text")
-  //   .attr("class", "event")
-  //   .attr("x", 477.27272727272725)
-  //   .attr("y", height + 100)
-  //   .attr("dy", "1em")
-  //   .style("font-family", "Courier")
-  //   .text("103年Q2:《房屋稅法》修正調高非自用住宅稅率");
-  // svg
-  //   .append("text")
-  //   .attr("class", "event")
-  //   .attr("x", 522.7272727272727)
-  //   .attr("y", height + 120)
-  //   .attr("dy", "1em")
-  //   .style("font-family", "Courier")
-  //   .text("103年Q4:巢運提出五大訴求");
-  // svg
-  //   .append("text")
-  //   .attr("class", "event")
-  //   .attr("x", 545.4545454545455)
-  //   .attr("y", height + 140)
-  //   .attr("dy", "1em")
-  //   .style("font-family", "Courier")
-  //   .text("104年Q1:張淑晶事件");
-  // svg
-  //   .append("text")
-  //   .attr("class", "event")
-  //   .attr("x", 636.3636363636364)
-  //   .attr("y", height + 160)
-  //   .attr("dy", "1em")
-  //   .style("font-family", "Courier")
-  //   .text("105年Q1:房地合一實價課稅開始實施");
-  // svg
-  //   .append("text")
-  //   .attr("class", "event")
-  //   .attr("x", 659.0909090909091)
-  //   .attr("y", height + 180)
-  //   .attr("dy", "1em")
-  //   .style("font-family", "Courier")
-  //   .text("105年Q2:蔡英文上台");
-  //   svg
-  //     .append("text")
-  //     .attr("class", "event")
-  //     .attr("x", 659.0909090909091)
-  //     .attr("y", height + 200)
-  //     .attr("dy", "1em")
-  //     .style("font-family", "Courier")
-  //     .text("房市三箭：杜絕房市炒作、健全租屋體系、建二十萬戶社會住宅");
-  // svg
-  //   .append("text")
-  //   .attr("class", "event")
-  //   .attr("x", 840.9090909090909)
-  //   .attr("y", height + 220)
-  //   .attr("dy", "1em")
-  //   .style("font-family", "Courier")
-  //   .text("107年Q2:《租賃住宅市場發展及管理條例》開始實施");
-
   // axis label
   svg
     .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("x", -(height / 2) - 30)
-    .attr("y", -margin.left + 30)
+    // .attr("transform", "rotate(-90)")
+    .attr("x", -margin.left+ 70)
+    .attr("y", -margin.left + 70)
     .attr("dy", "1em")
-    .style("font-family", "Courier")
+    .style("font-family", "times")
     .attr("font-weight", "bold")
     .attr("fill","#5F7470")
     .text("倍數");
 
   svg
     .append("text")
-    .attr("transform", "translate(" + (width + 60) + " ," + (height + 30) + ")")
+    .attr("transform", "translate(" + (width + 30) + " ," + (height + 10) + ")")
     .style("text-anchor", "middle")
-    .style("font-family", "Courier")
+    .style("font-family", "times")
     .attr("font-weight", "bold")
     .attr("fill","#5F7470")
     .text("年/季");
@@ -509,7 +405,7 @@ Promise.all([
     .attr("y", -20)
     .attr("class", "seCountry")
     .attr("font-size", "20px")
-    .attr("font-family", "Courier")
+    .attr("font-family", "times")
     .attr("font-weight", "bold")
     .attr("fill","#5F7470")
     .text("民國98至108年台灣每季房價所得比變化圖");
@@ -519,7 +415,7 @@ Promise.all([
       .attr("x", margin.left-100)
       .attr("y", height+250)
       .style("text-anchor", "left")
-      .style("font-family", "Courier")
+      .style("font-family", "times")
       .attr("font-weight", "bold")
       .attr("fill","#5F7470")
       .text("資料來源｜內政部不動產資訊平台");
@@ -528,35 +424,8 @@ Promise.all([
         .attr("x", margin.left-100)
         .attr("y", height+270)
         .style("text-anchor", "left")
-        .style("font-family", "Courier")
+        .style("font-family", "times")
         .attr("font-weight", "bold")
         .attr("fill","#5F7470")
         .text("圖表製作｜温雅筑 王毓淳 丁乃達 蘇晉威");
-
-  // const tooltipLine = svg.append("line");
-  // const tipBox = svg
-  //   .append("rect")
-  //   .attr("width", width)
-  //   .attr("height", height)
-  //   .attr("opacity", 0)
-  //   .on("mousemove", drawTooltip)
-  //   .on("mouseout", removeTooltip);
-
-  // function drawTooltip() {
-  //   let mouse = d3.mouse(this);
-  //   let y_position = y.invert(mouse[1]);
-  //   // console.log(y_position);
-  //   tooltipLine
-  //     .attr("stroke", "gray")
-  //     .attr("x1", 0)
-  //     .attr("x2", width)
-  //     .attr("stroke-width", "1.5")
-  //     .style("opacity", 0.3)
-  //     .attr("y1", y(y_position))
-  //     .attr("y2", y(y_position));
-  // }
-
-  // function removeTooltip() {
-  //   if (tooltipLine) tooltipLine.style("opacity", 0);
-  // }
 })
