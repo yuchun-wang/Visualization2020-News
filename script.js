@@ -2,7 +2,7 @@ const margin = {
     top: 60,
     right: 100,
     bottom: 400,
-    left: 100
+    left:30
   },
   width = 800,
   height = 500
