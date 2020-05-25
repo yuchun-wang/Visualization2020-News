@@ -13,53 +13,50 @@
 }
 
 .btn-danger{
-  background-color: #E76F51 !important;
-  border-color: #E76F51 !important;
+  background-color: #FA5457 !important;
+  border-color: #FA5457 !important;
   font-family: times;
   font-weight: bold;
 }
 
 .btn-primary{
-  background-color: #F4A261 !important;
-  border-color: #F4A261 !important;
+  background-color: #FA8925 !important;
+  border-color: #FA8925 !important;
   font-family: times;
   font-weight: bold;
 }
 
 .btn-warning{
-  background-color: #E9C46A !important;
-  border-color: #E9C46A !important;
+  background-color: #01B4BC !important;
+  border-color: #01B4BC !important;
   font-family: times;
   font-weight: bold;
 }
 
 .btn-info{
-  background-color: #2A9D8F !important;
-  border-color: #2A9D8F !important;
+  background-color: #5FA55A !important;
+  border-color: #5FA55A !important;
   font-family: times;
   font-weight: bold;
 }
 
 .btn-success{
-  background-color: #264653 !important;
-  border-color: #264653 !important;
+  background-color: #F6D51F !important;
+  border-color: #F6D51F !important;
   font-family: times;
   font-weight: bold;
 }
 
 .tooltip {
   position: absolute;
-  font-size: 15px;
+  font-size: 12px;
   font-family: times;
   font-weight: bold;
+  color: #5F7470;
   text-align: center;
-  color: #E0E2DB;
-  background: #889696;
-  /* width: 150px;
-  height: 60px; */
-  padding: 10px;
+  padding: 2px;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 4px;
   pointer-events: none;
 }
 
