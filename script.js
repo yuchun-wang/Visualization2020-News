@@ -1,7 +1,7 @@
 const margin = {
     top: 50,
     right: 100,
-    bottom: 80,
+    bottom: 100,
     left: 30
   },
   width = 800,
@@ -419,7 +419,7 @@ Promise.all([
 
   event6
     .html(
-      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>蔡英文上台:房市三箭</span>" +
+      "<span style='display:inline-block; border-bottom: 0.5px solid gray;padding-bottom: 0.5px;'>蔡英文上台：房市三箭</span>" +
       "<br>" +
       "<span style='display:inline-block;padding-top:8px'>杜絕房市炒作</span>" +
       "<br>" +
@@ -642,7 +642,7 @@ Promise.all([
       });
   }
 
-  for (i = 0; i <= 19; i++) {
+  for (i = 0; i <= 20; i++) {
     if (i <= 0) {
       cline(d3.map(newsData[i]).entries(), color[0], cities[i], "c" + i, area[i]);
     } else if (i <= 7) {
@@ -651,7 +651,7 @@ Promise.all([
     } else if (i <= 12) {
       cline(d3.map(newsData[i]).entries(), color[2], cities[i], "c" + i, area[i]);
       svg.selectAll(".c" + i).style("display", "none");
-    } else if (i <= 17) {
+    } else if (i <= 18) {
       cline(d3.map(newsData[i]).entries(), color[3], cities[i], "c" + i, area[i]);
       svg.selectAll(".c" + i).style("display", "none");
     } else {
@@ -697,7 +697,16 @@ Promise.all([
     .style("font-family", "Noto Sans TC")
     .attr("font-weight", "bold")
     .attr("fill", "#5F7470")
-    .text("年/季");
+    .text("年／季");
+
+  svg
+    .append("text")
+    .attr("transform", "translate(" + (width - 40) + " ," + (height + 47) + ")")
+    .style("text-anchor", "middle")
+    .style("font-family", "Noto Sans TC")
+    .attr("font-weight", "bold")
+    .attr("fill", "#5F7470")
+    .text("註：金門縣、連江縣無資料。");
 
   svg
     .append("text")
