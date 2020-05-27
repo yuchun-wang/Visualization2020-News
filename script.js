@@ -289,7 +289,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el1")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 263.63636363636357)
     .attr("x2", 263.63636363636357)
     .attr("stroke-width", "5")
@@ -318,7 +318,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el2")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 390.909090909090)
     .attr("x2", 390.909090909090)
     .attr("stroke-width", "5")
@@ -347,7 +347,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el3")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 427.27272727272725)
     .attr("x2", 427.27272727272725)
     .attr("stroke-width", "5")
@@ -375,7 +375,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el4")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 445.4545454545454)
     .attr("x2", 445.4545454545454)
     .attr("stroke-width", "5")
@@ -403,7 +403,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el5")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 518.1818181818181)
     .attr("x2", 518.1818181818181)
     .attr("stroke-width", "5")
@@ -436,7 +436,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el6")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 536.3636363636364)
     .attr("x2", 536.3636363636364)
     .attr("stroke-width", "5")
@@ -465,7 +465,7 @@ Promise.all([
   svg
     .append("line")
     .attr("class", "el7")
-    .attr("stroke", "#B8BDB5")
+    .attr("stroke", "#434A42")
     .attr("x1", 681.8181818181819)
     .attr("x2", 681.8181818181819)
     .attr("stroke-width", "5")
